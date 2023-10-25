@@ -1,0 +1,24 @@
+{
+  "name": "evm_compatible_playground-hardhat_ts-generic",
+  "version": "0.1.0",
+  "description": "Playground for generic EVM-compatible chains with Hardhat (TypeScript).",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangby-cryptape/evm-compatible-playground.git"
+  },
+  "keywords": [
+    "ethereum",
+    "evm",
+    "hardhat"
+  ],
+  "author": "Boyu Yang <chaoticlonghair@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/yangby-cryptape/evm-compatible-playground/issues"
+  },
+  "homepage": "https://github.com/yangby-cryptape/evm-compatible-playground#readme"
+}
