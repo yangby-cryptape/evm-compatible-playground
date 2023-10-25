@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/yangby-cryptape/evm-compatible-playground/issues"
   },
-  "homepage": "https://github.com/yangby-cryptape/evm-compatible-playground#readme"
+  "homepage": "https://github.com/yangby-cryptape/evm-compatible-playground#readme",
+  "devDependencies": {
+    "hardhat": "^2.18.3"
+  }
 }
