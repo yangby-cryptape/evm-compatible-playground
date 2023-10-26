@@ -1,4 +1,4 @@
-function addScope() {
+function addTasks() {
   const storageScope = scope("storage", "Run simple storage-related contracts.");
 
   storageScope.task("deploy", "Deploy all storage-related contracts.")
@@ -45,4 +45,4 @@ async function loadUint256 (args) {
   console.log(`The result is 0x${result.toString(16)}.`);
 }
 
-module.exports = { addScope }
+module.exports = { addTasks }

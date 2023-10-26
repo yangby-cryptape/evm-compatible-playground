@@ -1,7 +1,11 @@
-import { storage } from "../components";
+import {
+  deploy,
+  storage,
+} from "../components";
 
 function init() {
-  storage.addScope();
+  deploy.addTasks();
+  storage.addTasks();
 }
 
 module.exports = { init }
