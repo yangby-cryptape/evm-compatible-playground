@@ -22,6 +22,10 @@
   },
   "homepage": "https://github.com/yangby-cryptape/evm-compatible-playground#readme",
   "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "hardhat": "^2.18.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }
