@@ -5,6 +5,29 @@ async function displayAccount(name, address) {
   console.log(`- balance: ${balance}`);
 }
 
+async function deployContract(contractName) {
+  const contract = await ethers.getContractFactory(contractName);
+  const deployed = await contract.deploy();
+  console.log("The contract %s is being deployed to \"%s\".", contractName, deployed.target);
+  return deployed;
+}
+
+async function deployContracts(contractNames: string[]) {
+  let contracts = [];
+  for (var contractName of contractNames) {
+    const contract = await ethers.deployContract(contractName);
+    console.log("The contract %s is being deployed to \"%s\".", contractName, contract.target);
+    contracts.push(contract);
+  }
+  let deployedContracts = []
+  for (var contract of contracts) {
+    const deployed = await contract.waitForDeployment();
+    deployedContracts.push(deployed);
+  }
+  console.log("All contracts are deployed.");
+  return deployedContracts;
+}
+
 async function getTransactionReceipt(txHash, seconds) {
   const ms_per_turn = 500;
   let milliSecs = seconds * 1000;
@@ -30,6 +53,8 @@ async function unimplementedTask(args) {
 
 module.exports = {
   displayAccount,
+  deployContract,
+  deployContracts,
   getTransactionReceipt,
   sleep,
   unimplementedTask,

@@ -3,7 +3,6 @@ import { ethers } from "hardhat";
 
 describe("Storage", function () {
   async function deployContracts() {
-    // Contracts are deployed using the first signer/account by default
     const [owner, otherAccount] = await ethers.getSigners();
 
     const Storage = await ethers.getContractFactory("Storage");

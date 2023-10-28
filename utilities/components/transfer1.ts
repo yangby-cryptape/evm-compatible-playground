@@ -1,13 +1,9 @@
-import {
-  displayAccount,
-  getTransactionReceipt,
-  unimplementedTask,
-} from "../tools";
+import * as tools from "../tools";
 
 function addTasks() {
   const currentScope = scope("transfer1", "Run transfer-related contracts for one destination address.");
 
-  currentScope.task("deploy", "Deploy all storage-related contracts.")
+  currentScope.task("deploy", "Deploy related contracts.")
     .setAction(deployContracts);
 
   currentScope.task("simple", "Through the simplest transaction.")
@@ -25,18 +21,13 @@ function addTasks() {
 }
 
 async function deployContracts() {
-  const currencySender = await ethers.deployContract("CurrencySender");
-
-  console.log(`The contract CurrencySender is being deployed to ${currencySender.target} ...`);
-
-  await currencySender.waitForDeployment();
-
+  await tools.deployContract("CurrencySender");
   console.log("All contracts are deployed.");
 }
 
 async function displayAccounts(sender, receiver) {
-  await displayAccount("Sender", sender);
-  await displayAccount("Receiver", receiver);
+  await tools.displayAccount("Sender", sender);
+  await tools.displayAccount("Receiver", receiver);
 }
 
 async function simpleSend(args) {
@@ -51,7 +42,7 @@ async function simpleSend(args) {
   });
 
   console.log(`The transaction is "${result.hash}"`);
-  let receipt = await getTransactionReceipt(result.hash, 10);
+  let receipt = await tools.getTransactionReceipt(result.hash, 10);
   console.log(`Cost ${receipt.gasUsed} gas.`);
   await displayAccounts(sender.address, args.to);
 }
@@ -82,7 +73,7 @@ async function sendViaContract(args) {
   }
 
   console.log(`The transaction is "${result.hash}"`);
-  let receipt = await getTransactionReceipt(result.hash, 10);
+  let receipt = await tools.getTransactionReceipt(result.hash, 10);
   console.log(`Cost ${receipt.gasUsed} gas.`);
   await displayAccounts(sender.address, args.to);
 }

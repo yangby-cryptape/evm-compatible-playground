@@ -1,13 +1,9 @@
-import {
-  deploy,
-  storage,
-  transfer1,
-} from "../components";
+import * as components from "../components";
 
 function init() {
-  deploy.addTasks();
-  storage.addTasks();
-  transfer1.addTasks();
+  components.deploy.addTasks();
+  components.storage.addTasks();
+  components.transfer1.addTasks();
 }
 
 module.exports = { init }
