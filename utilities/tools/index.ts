@@ -5,6 +5,30 @@ async function displayAccount(name, address) {
   console.log(`- balance: ${balance}`);
 }
 
+async function displayAccounts(name, addresses, limit) {
+  console.log("%s:", name);
+  if (addresses.length <= limit) {
+    for (var address of addresses) {
+      var balance = await ethers.provider.getBalance(address);
+      console.log(`- ${address}: ${balance}`);
+    }
+  } else {
+    const half = Math.floor(limit / 2);
+    for (var i = 0; i < half; i++) {
+      var address = addresses[i];
+      var balance = await ethers.provider.getBalance(address);
+      console.log(`- ${address}: ${balance}`);
+    }
+    console.log("  ... skipped ...")
+    const len = addresses.length;
+    for (var i = len - half; i < len; i++) {
+      var address = addresses[i];
+      var balance = await ethers.provider.getBalance(address);
+      console.log(`- ${address}: ${balance}`);
+    }
+  }
+}
+
 async function deployContract(contractName) {
   const contract = await ethers.getContractFactory(contractName);
   const deployed = await contract.deploy();
@@ -53,6 +77,7 @@ async function unimplementedTask(args) {
 
 module.exports = {
   displayAccount,
+  displayAccounts,
   deployContract,
   deployContracts,
   getTransactionReceipt,
