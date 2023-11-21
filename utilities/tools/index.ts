@@ -65,6 +65,20 @@ async function getTransactionReceipt(txHash, seconds) {
   return null;
 }
 
+// const signers = await hre.ethers.getSigners();
+function getHDWalletFromMnemonic(index) {
+  const accounts = hre.network.config.accounts;
+  const mnemonic = ethers.Mnemonic.fromPhrase(accounts.mnemonic)
+  const hdwallet = ethers.HDNodeWallet.fromMnemonic(mnemonic, accounts.path + `/${index}`);
+  return hdwallet;
+}
+
+function getWalletFromMnemonic(index) {
+  const hdwallet = getHDWalletFromMnemonic(index);
+  const wallet = new ethers.Wallet(hdwallet.privateKey, ethers.provider);
+  return wallet;
+}
+
 async function sleep(milliSecs) {
   await new Promise(r => setTimeout(r, milliSecs));
 }
@@ -81,6 +95,8 @@ module.exports = {
   deployContract,
   deployContracts,
   getTransactionReceipt,
+  getHDWalletFromMnemonic,
+  getWalletFromMnemonic,
   sleep,
   unimplementedTask,
 }
